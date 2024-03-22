@@ -1,5 +1,7 @@
 package org.springboot.api.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springboot.api.dto.MemberDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,8 +11,10 @@ import java.util.Map;
 @RequestMapping("/api/v1/get-api")
 public class GetController {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(GetController.class);
     @RequestMapping(value="/hello", method = RequestMethod.GET)
     public String getHello() {
+        LOGGER.info("getHello() 메소드 호출");
         return "Hello, World!";
     }
 
