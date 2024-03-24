@@ -3,10 +3,12 @@ package org.springboot.jpa.data;
 import org.springboot.jpa.data.dao.impl.ProductDAO;
 import org.springboot.jpa.data.entity.Product;
 import org.springboot.jpa.data.repository.ProductRepository;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Component
 public class ProductDAOImpl implements ProductDAO {
     private final ProductRepository productRepository;
 
