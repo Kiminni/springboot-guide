@@ -1,4 +1,4 @@
-package org.springboot.jpa.data;
+package org.springboot.jpa.data.dao;
 
 import org.springboot.jpa.data.dao.impl.ProductDAO;
 import org.springboot.jpa.data.entity.Product;
