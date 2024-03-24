@@ -63,6 +63,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Long number) throws Exception {
-
+        productDAO.deleteProduct(number);
     }
 }
