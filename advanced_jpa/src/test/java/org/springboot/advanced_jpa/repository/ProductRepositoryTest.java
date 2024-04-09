@@ -18,7 +18,7 @@ import java.util.List;
 class ProductRepositoryTest {
 
     @Autowired
-    private ProductRepository productRepository;
+    ProductRepository productRepository;
 
     @Autowired
     JPAQueryFactory jpaQueryFactory;
