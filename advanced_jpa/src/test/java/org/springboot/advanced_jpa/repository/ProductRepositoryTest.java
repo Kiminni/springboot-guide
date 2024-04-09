@@ -1,17 +1,26 @@
 package org.springboot.advanced_jpa.repository;
 
+import com.querydsl.jpa.impl.JPAQuery;
 import org.junit.jupiter.api.Test;
 import org.springboot.advanced_jpa.data.entity.Product;
+import org.springboot.advanced_jpa.data.entity.QProduct;
 import org.springboot.advanced_jpa.data.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @SpringBootTest
 class ProductRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @PersistenceContext
+    EntityManager entityManager;
 
 //    public ProductRepositoryTest(ProductRepository productRepository) {
 //        this.productRepository = productRepository;
@@ -49,5 +58,30 @@ class ProductRepositoryTest {
     }
     private Sort getsort() {
         return Sort.by(Sort.Order.asc("price"), Sort.Order.desc("stock"));
+    }
+
+    @Test
+    void queryDslTest() {
+        JPAQuery<Product> query = new JPAQuery<>(entityManager);
+        QProduct qProduct = QProduct.product;
+
+        List<Product> productList = query
+                .from(qProduct)
+                .where(qProduct.name.eq("펜"))
+                .orderBy(qProduct.price.asc())
+                .fetch();
+
+        for (Product product : productList) {
+            System.out.println("---------");
+            System.out.println(product.getNumber());
+            System.out.println(product.getName());
+            System.out.println(product.getPrice());
+            System.out.println(product.getStock());
+            System.out.println("---------");
+        }
+
+
+
+
     }
 }
