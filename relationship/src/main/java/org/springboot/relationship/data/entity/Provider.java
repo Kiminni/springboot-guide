@@ -1,26 +1,24 @@
 package org.springboot.relationship.data.entity;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class ProductDetail extends BaseEntity{
+@Table(name = "provider")
+public class Provider extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String description;
+    private String name;
 
-    @OneToOne
-    @JoinColumn(name = "product_number")
-    @ToString.Exclude
-    private Product product;
 }
