@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,6 +27,4 @@ public class Product extends BaseEntity {
 
     @Column(nullable = false)
     private Integer price;
-
-
 }
