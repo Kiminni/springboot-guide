@@ -3,6 +3,8 @@ package org.springboot.relationship.data.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="product")
@@ -36,4 +38,12 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "provider_id")
     @ToString.Exclude
     private Provider provider;
+
+    @ManyToMany
+    @ToString.Exclude
+    private List<Producer> producers = new ArrayList<>();
+
+    public void addProducer(Producer producer){
+        producers.add(producer);
+    }
 }
