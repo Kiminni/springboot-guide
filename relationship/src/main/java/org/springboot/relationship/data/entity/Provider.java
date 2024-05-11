@@ -23,7 +23,7 @@ public class Provider extends BaseEntity{
 
     private String name;
 
-    @OneToMany(mappedBy = "provider", cascade = CascadeType.PERSIST) //관련 엔티티도 함께 영속화
+    @OneToMany(mappedBy = "provider", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER) //관련 엔티티도 함께 영속화
     @ToString.Exclude //순환 참조를 막기 위함
     @Builder.Default
     private List<Product> productList = new ArrayList<>();

@@ -112,4 +112,49 @@ class ProviderRepositoryTest {
         providerRepository.save(provider);
     }
 
+    @Test
+    void orphanRemovalTest() {
+        Provider provider = Provider.builder()
+                .name("쿠팡")
+                .build();
+
+        Product product1 = Product.builder()
+                .name("스프링 부트 JPA")
+                .price(5000)
+                .stock(500)
+                .provider(provider)
+                .build();
+
+        Product product2 = Product.builder()
+                .name("펜")
+                .price(200)
+                .stock(100)
+                .provider(provider)
+                .build();
+
+        Product product3 = Product.builder()
+                .name("가방")
+                .price(10000)
+                .stock(1000)
+                .provider(provider)
+                .build();
+
+        provider.getProductList().addAll(Lists.newArrayList(product1, product2, product3));
+
+        providerRepository.saveAndFlush(provider);
+
+        providerRepository.findAll().forEach(System.out::println);
+        productRepository.findAll().forEach(System.out::println);
+
+        Provider foundProvier = providerRepository.findById(1L).get();
+        foundProvier.getProductList().remove(0);
+
+        providerRepository.findAll().forEach(System.out::println);
+        productRepository.findAll().forEach(System.out::println);
+
+    }
+
+
+
+
 }
