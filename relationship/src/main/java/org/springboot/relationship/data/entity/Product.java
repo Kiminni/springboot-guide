@@ -41,6 +41,7 @@ public class Product extends BaseEntity {
 
     @ManyToMany
     @ToString.Exclude
+    @Builder.Default
     private List<Producer> producers = new ArrayList<>();
 
     public void addProducer(Producer producer){

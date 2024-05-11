@@ -28,6 +28,7 @@ public class Category {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
+    @Builder.Default
     private List<Product> products = new ArrayList<>();
 
 }

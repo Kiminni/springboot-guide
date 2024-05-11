@@ -1,5 +1,6 @@
 package org.springboot.relationship.data.repository;
 
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,6 +80,36 @@ class ProviderRepositoryTest {
             log.info("product: {}", product);
         }
 
+    }
+
+    @Test
+    void cascadeTest() {
+        Provider provider = new Provider();
+        provider.setName("쿠팡");
+
+        Product prod1 = new Product();
+        prod1.setName("펜");
+        prod1.setPrice(5000);
+        prod1.setStock(500);
+
+        Product prod2 = new Product();
+        prod2.setName("가방");
+        prod2.setPrice(500);
+        prod2.setStock(50);
+
+        Product prod3 = new Product();
+        prod3.setName("책");
+        prod3.setPrice(3000);
+        prod3.setStock(1000);
+
+
+        prod1.setProvider(provider);
+        prod2.setProvider(provider);
+        prod3.setProvider(provider);
+
+        provider.getProductList().addAll(Lists.newArrayList(prod1, prod2, prod3));
+
+        providerRepository.save(provider);
     }
 
 }
