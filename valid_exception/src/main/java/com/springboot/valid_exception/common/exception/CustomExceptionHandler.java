@@ -44,6 +44,7 @@ public class CustomExceptionHandler {
         map.put("code", Integer.toString(e.getHttpStatusCode()));
         map.put("message", e.getMessage());
 
+
         return new ResponseEntity<>(map, responseHeaders, status);
     }
 }
